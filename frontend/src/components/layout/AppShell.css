@@ -1,0 +1,162 @@
+.shell {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+/* ---------- Brand mark ----------
+   The umbrella/rain glyph nods to "pula" (rain = wealth/currency in
+   Setswana) — the same idea threaded through the palette rationale in
+   tokens.css. Small, quiet, appears once in the nav — not overused. */
+/* Brand mark is now rendered via the shared <Logo /> component
+   (see components/layout/Logo.jsx) rather than a hardcoded emoji span —
+   see that file to swap in the real company logo. */
+
+/* ---------- Desktop sidebar ---------- */
+.shell-sidebar {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5) var(--space-4);
+  z-index: 20;
+}
+.shell-brand {
+  display: flex;
+  flex-direction: column; /* Stacks items vertically */
+  align-items: center;    /* Centers logo and text horizontally */
+  text-align: center;     /* Centers text lines */
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-6);
+  padding: 0 var(--space-2);
+}
+.shell-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1;
+}
+.shell-nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0.7rem var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--color-ink-muted);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  transition: background var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
+}
+.shell-nav-link:hover { background: var(--color-primary-light); color: var(--color-primary-dark); text-decoration: none; }
+.shell-nav-link.active { background: var(--color-primary); color: #fff; }
+.shell-nav-link svg { flex-shrink: 0; width: 18px; height: 18px; }
+
+.shell-sidebar-footer {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+}
+.shell-user { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); padding: 0 var(--space-2); }
+.shell-user-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--text-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.shell-user-name { font-weight: 600; font-size: var(--text-sm); line-height: 1.3; }
+.shell-user-role { font-size: var(--text-xs); color: var(--color-ink-faint); }
+.shell-logout {
+  display: flex; align-items: center; gap: var(--space-2);
+  width: 100%;
+  background: none; border: none;
+  padding: 0.6rem var(--space-2);
+  border-radius: var(--radius-md);
+  color: var(--color-ink-muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  cursor: pointer;
+}
+.shell-logout:hover { background: var(--color-danger-bg); color: var(--color-danger); }
+
+.shell-content {
+  margin-left: var(--sidebar-width);
+  padding: var(--space-6) 0 var(--space-10);
+  min-height: 100vh;
+}
+
+/* ---------- Mobile topbar / drawer / bottom nav (hidden on desktop) ---------- */
+.shell-topbar, .shell-bottom-nav, .shell-mobile-drawer, .shell-menu-toggle { display: none; }
+
+@media (max-width: 900px) {
+  .shell-sidebar { display: none; }
+  .shell-content { margin-left: 0; padding: calc(var(--topbar-height) + var(--space-5)) 0 calc(var(--bottom-nav-height) + var(--space-6)); }
+
+  .shell-topbar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--topbar-height);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0 var(--space-4);
+    z-index: 30;
+  }
+  .shell-topbar-title { font-family: var(--font-display); font-weight: 700; }
+  .shell-menu-toggle {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px;
+    background: none; border: none; cursor: pointer;
+    color: var(--color-ink);
+    font-size: 1.25rem;
+  }
+
+  .shell-mobile-drawer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    position: fixed;
+    top: var(--topbar-height); left: 0; right: 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-3);
+    z-index: 29;
+    box-shadow: var(--shadow-md);
+  }
+
+  .shell-bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: var(--bottom-nav-height);
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    z-index: 30;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .shell-bottom-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    flex: 1;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--color-ink-faint);
+  }
+  .shell-bottom-link svg { width: 20px; height: 20px; }
+  .shell-bottom-link.active { color: var(--color-primary); }
+  .shell-bottom-link:hover { text-decoration: none; }
+}

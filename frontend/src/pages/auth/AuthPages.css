@@ -1,0 +1,54 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6) var(--space-4);
+  background:
+    radial-gradient(circle at 15% 20%, var(--color-primary-light) 0%, transparent 45%),
+    radial-gradient(circle at 85% 80%, var(--color-accent-light) 0%, transparent 45%),
+    var(--color-bg);
+}
+
+.auth-page-brand {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+/* Brand mark now rendered via <Logo /> (see components/layout/Logo.jsx). */
+.auth-page-brand h1 {
+  font-size: var(--text-2xl);
+  color: var(--color-primary-dark);
+  margin: var(--space-2) 0 0;
+}
+.auth-page-brand p { margin: 0; color: var(--color-ink-faint); }
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+.auth-card h2 { margin-bottom: var(--space-1); }
+.auth-subtitle { font-size: var(--text-sm); margin-bottom: var(--space-5); }
+
+.auth-error {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-4);
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: var(--space-5);
+  margin-bottom: 0;
+  font-size: var(--text-sm);
+}
+
+.auth-page-footer-links {
+  text-align: center;
+  margin-top: var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-ink-faint);
+}

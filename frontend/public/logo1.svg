@@ -1,0 +1,10 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- PLACEHOLDER LOGO — replace this file with your real company logo.
+       Keep the filename "logo.svg" (or see Logo.jsx to point at a
+       different filename/extension, e.g. logo.png). No other code
+       changes are needed anywhere in the app - every page reads the
+       logo through this one file via the <Logo /> component. -->
+  <circle cx="16" cy="16" r="15" fill="#0B4F3A" stroke="#C9971F" stroke-width="1.5"/>
+  <path d="M16 8 L22 13 V22 H10 V13 Z" fill="#F7F5F0"/>
+  <rect x="14" y="16" width="4" height="6" fill="#0B4F3A"/>
+</svg>

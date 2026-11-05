@@ -1,0 +1,109 @@
+.mofenyi-fab {
+  position: fixed;
+  right: var(--space-5);
+  bottom: calc(var(--space-5) + var(--bottom-nav-height));
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-trust));
+  color: #fff;
+  border: none;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 40;
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+.mofenyi-fab:hover { transform: scale(1.06); }
+
+@media (min-width: 901px) {
+  .mofenyi-fab { bottom: var(--space-5); }
+}
+
+.mofenyi-panel {
+  position: fixed;
+  right: var(--space-5);
+  bottom: calc(var(--space-5) + var(--bottom-nav-height) + 64px);
+  width: min(360px, calc(100vw - 2 * var(--space-5)));
+  max-height: min(520px, calc(100vh - 160px));
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 40;
+}
+@media (min-width: 901px) {
+  .mofenyi-panel { bottom: calc(var(--space-5) + 72px); }
+}
+
+.mofenyi-header {
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-4);
+}
+.mofenyi-header strong { font-family: var(--font-display); font-size: var(--text-lg); display: block; }
+.mofenyi-subtitle { font-size: var(--text-xs); opacity: 0.85; }
+
+.mofenyi-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: var(--color-bg);
+}
+
+.mofenyi-bubble {
+  max-width: 85%;
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+.mofenyi-bubble-mofenyi {
+  align-self: flex-start;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-bottom-left-radius: 2px;
+}
+.mofenyi-bubble-user {
+  align-self: flex-end;
+  background: var(--color-primary);
+  color: #fff;
+  border-bottom-right-radius: 2px;
+}
+
+.mofenyi-input-row {
+  display: flex;
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-3);
+  gap: var(--space-2);
+}
+.mofenyi-input-row input {
+  flex: 1;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+  padding: 0.55rem 1rem;
+  font-size: var(--text-sm);
+}
+.mofenyi-input-row input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+.mofenyi-input-row button {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-accent);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}

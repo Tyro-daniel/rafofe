@@ -1,0 +1,86 @@
+# =============================================================================
+# Full-stack local/staging orchestration: Postgres + backend API + frontend.
+#
+# For everyday development, run the Spring API and Angular dev server on
+# the host and use `docker compose up postgres` for the database.
+#
+# `docker compose up --build` here runs the WHOLE stack containerized,
+# useful for: verifying the production Docker images actually work,
+# staging environments, or onboarding a new developer with one command.
+# =============================================================================
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: lms_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: lms_user
+      POSTGRES_PASSWORD: lms_password
+      POSTGRES_DB: lms_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - lms_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lms_user -d lms_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - lms_network
+
+  backend:
+    build: ./backend-springboot
+    container_name: lms_backend
+    restart: unless-stopped
+    # depends_on with a healthcheck condition means the backend container
+    # doesn't even start attempting DB connections until Postgres has
+    # actually accepted a connection, not just "the container process
+    # started" (those are not the same thing, and racing them is a classic
+    # source of "works sometimes" bugs in Compose stacks).
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/lms_db
+      DB_USERNAME: lms_user
+      DB_PASSWORD: lms_password
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set in your .env file — see backend/.env.example}
+      PORT: 4000
+      CORS_ORIGIN: http://localhost:8080
+      APP_BASE_URL: http://localhost:8080
+      UPLOAD_DIR: /app/uploads
+      DEV_EMAIL_LINKS: "false"
+      MAIL_HOST: ${MAIL_HOST:-}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_FROM: ${MAIL_FROM:-}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME:-Refofe Novelty}
+    ports:
+      - "4000:4000"
+    volumes:
+      - lms_uploads:/app/uploads
+    networks:
+      - lms_network
+
+  frontend:
+    build:
+      context: ./frontend-angular
+      dockerfile: Dockerfile
+    container_name: lms_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    networks:
+      - lms_network
+
+networks:
+  lms_network:
+    driver: bridge
+
+volumes:
+  lms_postgres_data:
+  lms_uploads:

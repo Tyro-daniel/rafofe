@@ -1,0 +1,141 @@
+/* =============================================================================
+   DESIGN TOKENS
+   =============================================================================
+   Design direction, for maintainers:
+
+   COLOR — the brief asked for colors representing wealth, altruism,
+   togetherness, and success, for a Botswana micro-lending product. Rather
+   than default fintech-blue-and-white, the palette is grounded in something
+   specific to the brief: in Setswana, "pula" means both "rain" and is the
+   name of the national currency — rain is the historic symbol of wealth in
+   a semi-arid country, which is precisely "wealth" and "success" in one
+   word. The Botswana flag's blue (water, peace) and black/white bands
+   (national togetherness) supply the "togetherness" half. This gives four
+   colors that are actually *about* something, not a generic finance-app
+   blue:
+     --color-primary   (#0B4F3A deep emerald) — wealth, growth, money
+     --color-accent    (#C9971F warm gold)    — success, value, "pula" as prosperity
+     --color-trust     (#1B3A5C deep indigo)  — togetherness, stability, water
+     --color-bg        (#F7F5F0 warm sand)    — altruism/warmth — deliberately
+                                                  not sterile white or the
+                                                  generic "cream + terracotta"
+                                                  AI-design default.
+
+   TYPE — three roles, each doing a different job (per design system best
+   practice, not just one font everywhere):
+     Space Grotesk  — display/headings: confident, geometric, a little
+                      technical — signals "engineered", not "decorative".
+     IBM Plex Sans  — body/UI text: humanist, highly legible at small sizes,
+                      used by data-heavy products for good reason.
+     IBM Plex Mono  — every financial figure (amounts, rates, dates in
+                      tables). Tabular figures in a monospace is a real
+                      fintech convention (Stripe, Wise, etc. do this) — it
+                      lets a loan officer's eye scan a column of numbers
+                      and compare digit-by-digit, which proportional fonts
+                      make harder.
+   ========================================================================== */
+
+:root {
+/* ==========================================================================
+     1. BRAND COLORS (Terracotta/Orange Logo + Warm Forest Green Core)
+   ========================================================================== */
+  /* Primary Action / CTA (Terracotta / Warm Coral Orange from Logo) */
+  --color-primary: #d35238;
+  --color-primary-dark: #a67a15;
+  --color-primary-light: #fbebe8;
+
+  /* Secondary Brand / Financial Growth (Warm Forest Green) */
+  --color-brand-green: #1b4d3e;
+  --color-brand-green-dark: #12352b;
+  --color-brand-green-light: #e8f2ee;
+
+  /* Logo Gold / Accent Highlight */
+  --color-accent: #c9971f;
+  --color-accent-dark: #a67a15;
+  --color-accent-light: #f8eeda;
+  --color-gold-light: #c6b182;
+
+  /* Trust & Stability Anchors (Deep Warm Olive/Earthy Sage) */
+  --color-trust: #2d5a43;
+  --color-trust-light: #edf4f0;
+
+/* ==========================================================================
+     2. SURFACE & TEXT (Clean, Readable Warm Canvas)
+     ========================================================================== */
+  --color-bg: #fcfbf7;             /* Soft warm off-white canvas */
+  --color-surface: #ffffff;        /* Pure white cards */
+  --color-surface-raised: #f7f5ef; /* Highlighted cards / containers */
+  --color-border: #e4e0d6;         /* Soft neutral borders */
+  --color-border-strong: #a1bca8;  /* Soft green-tinted strong border */
+
+  /* Typography / Ink */
+  --color-ink: #16211c;            /* Deep charcoal with slight green tint */
+  --color-ink-muted: #5b6b63;      /* Muted body text */
+  --color-ink-faint: #8b988f;      /* Secondary labels / timestamps */
+
+  /* ==========================================================================
+     3. SYSTEM STATUS & UTILITY (Conversion & UX Feedback)
+     ========================================================================== */
+  --color-success: #237a57;        /* Warm Emerald Green for Verified/Success */
+  --color-success-bg: #e7f4ec;     /* Calculator output & success badges */
+  --color-warning: #b87a1d;        /* Pending / Attention needed */
+  --color-warning-bg: #faf0dd;
+  --color-danger: #a63d22;         /* Rejected / Error */
+  --color-danger-bg: #fcece8;
+  --color-info: var(--color-trust);
+  --color-info-bg: var(--color-trust-light);
+
+  /* ---- Typography ---- */
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+
+  /* ---- Spacing scale (4px base) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+  --space-10: 4rem;
+
+  /* ---- Shape & elevation ---- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(22, 33, 28, 0.06);
+  --shadow-md: 0 4px 16px rgba(22, 33, 28, 0.08);
+  --shadow-lg: 0 12px 32px rgba(22, 33, 28, 0.14);
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+
+  /* ---- Layout ---- */
+  --sidebar-width: 248px;
+  --topbar-height: 64px;
+  --bottom-nav-height: 64px;
+  --content-max-width: 1180px;
+}
+
+/* Respect reduced-motion preferences — required for accessibility, not optional. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

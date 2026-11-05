@@ -1,0 +1,43 @@
+.apply-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .apply-layout { grid-template-columns: 1fr; }
+}
+
+.apply-estimate {
+  position: sticky;
+  top: var(--space-5);
+  background: var(--color-primary-light);
+  color: #144e3c;
+}
+.apply-estimate h3 { color: #2d5a43; }
+.estimate-figure {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+.estimate-figure span { font-size: var(--text-base); font-weight: 500; opacity: 0.75; margin-left: var(--space-1); }
+
+.estimate-details { margin: 0 0 var(--space-4); }
+.estimate-details > div {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-2) 0;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.estimate-details dt { opacity: 0.8; font-size: var(--text-sm); }
+.estimate-details dd { margin: 0; font-weight: 600; }
+
+.estimate-note { font-size: var(--text-xs); opacity: 0.75; margin: 0; }
+
+.large-loan-notice {
+  background: var(--color-green-light);
+  color: var(--color-trust);
+  font-size: var(--text-sm);
+  border-color: var(--color-trust);
+}

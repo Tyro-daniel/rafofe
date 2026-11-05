@@ -1,0 +1,13 @@
+.loan-row-link { text-decoration: none; color: inherit; display: block; }
+.loan-row-link:hover { text-decoration: none; }
+.loan-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+.loan-row:hover { border-color: var(--color-primary); }
+.loan-row-title { font-weight: 600; }
+.loan-row-meta { font-size: var(--text-sm); color: var(--color-ink-faint); }
+.loan-row-amount { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-1); }
+.loan-row-amount .figure { font-weight: 600; }

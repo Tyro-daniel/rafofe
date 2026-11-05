@@ -1,0 +1,13 @@
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+.metric-link { text-decoration: none; color: inherit; display: block; }
+.metric-link:hover { text-decoration: none; }
+.metric-card { display: flex; flex-direction: column; gap: var(--space-2); transition: border-color var(--duration-fast) var(--ease-standard); }
+.metric-link:hover .metric-card { border-color: var(--color-primary); }
+.metric-card-danger .metric-value { color: var(--color-danger); }
+.metric-card-success .metric-value { color: var(--color-success); }
+.metric-label { font-size: var(--text-sm); color: var(--color-ink-muted); font-weight: 500; }
+.metric-value { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--color-primary-dark); }
